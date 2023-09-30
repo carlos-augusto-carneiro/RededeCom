@@ -55,7 +55,27 @@ public class Server {
                         bufferedWriter.write("A porta do servidor é: " + portaServidor);
                         bufferedWriter.newLine();
                         bufferedWriter.flush();
+                    }else if (msgCliente.equalsIgnoreCase("listar arquivos")) {
+                        File diretorio = new File("C:\\Users\\carlo\\Downloads"); // Substitua pelo caminho do diretório desejado
+                        File[] arquivos = diretorio.listFiles();
+                    
+                        if (arquivos != null) {
+                            for (File arquivo : arquivos) {
+                                if (arquivo.isFile()) {
+                                    bufferedWriter.write(arquivo.getName());
+                                    bufferedWriter.newLine();
+                                }
+                            }
+                            bufferedWriter.write("FimDaLista"); // Marca o final da lista de arquivos
+                            bufferedWriter.newLine();
+                            bufferedWriter.flush();
+                        } else {
+                            bufferedWriter.write("Nenhum arquivo encontrado.");
+                            bufferedWriter.newLine();
+                            bufferedWriter.flush();
+                        }
                     }
+                    
                 }
                 socket.close();
                 inputStreamReader.close();

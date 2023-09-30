@@ -20,35 +20,41 @@ public class Cliente {
             bufferedReader = new BufferedReader(inputStreamReader);
             bufferedWriter = new BufferedWriter(outputStreamWriter);
 
-            Scanner scanner = new Scanner(System.in);
+            try (Scanner scanner = new Scanner(System.in)) {
+                while (true) {
+                    String msg = scanner.nextLine();
 
-            while (true) {
-                String msg = scanner.nextLine();
+                    bufferedWriter.write(msg);
+                    bufferedWriter.newLine();
+                    bufferedWriter.flush();
 
-                bufferedWriter.write(msg);
-                bufferedWriter.newLine();
-                bufferedWriter.flush();
+                    System.out.println("Server: " + bufferedReader.readLine());
 
-                System.out.println("Server: " + bufferedReader.readLine());
-
-                if (msg.equalsIgnoreCase("Tchau")) {
-					System.out.println("Até a próxima <3");
-                    socket.close();
-                    break;
-            	}else if (msg.equalsIgnoreCase("Hora")) {
-                    System.out.println("Cliente: Solicitando hora atual...");
-                    String horaAtual = bufferedReader.readLine();
-                    System.out.println("Server: " + horaAtual);
-                }else if (msg.equalsIgnoreCase("Porta")) {
-                    System.out.println("Cliente: Solicitando a porta do servidor...");
-                    String portaServidor = bufferedReader.readLine();
-                    System.out.println("Server: " + portaServidor);
-                }else if (msg.equalsIgnoreCase("Porta")) {
-                    System.out.println("Cliente: Solicitando a porta do servidor...");
-                    String portaServidor = bufferedReader.readLine();
-                    System.out.println("Server: " + portaServidor);
+                    if (msg.equalsIgnoreCase("Tchau")) {
+                		System.out.println("Até a próxima <3");
+                        socket.close();
+                        break;
+                	}else if (msg.equalsIgnoreCase("Hora")) {
+                        System.out.println("Cliente: Solicitando hora atual...");
+                        String horaAtual = bufferedReader.readLine();
+                        System.out.println("Server: " + horaAtual);
+                    }else if (msg.equalsIgnoreCase("Porta")) {
+                        System.out.println("Cliente: Solicitando a porta do servidor...");
+                        String portaServidor = bufferedReader.readLine();
+                        System.out.println("Server: " + portaServidor);
+                    }else if (msg.equalsIgnoreCase("Listar arquivos")) {
+                        bufferedWriter.write("ListarArquivos");
+                        bufferedWriter.newLine();
+                        bufferedWriter.flush();
+                    
+                        String resposta;
+                        while (!(resposta = bufferedReader.readLine()).equals("FimDaLista")) {
+                            System.out.println("Arquivo: " + resposta);
+                        }
+                    }
+                    
                 }
-        	}
+            }
 		}
 		finally {
 			try{
