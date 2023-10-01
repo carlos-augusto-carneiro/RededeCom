@@ -1,3 +1,14 @@
+# Como executar
+
+### Versão do java
+recomendo usar a versão java version "20.0.2"
+
+### Como executar
+<img src = "fotos\abrir os codigos (1).png">
+<img src = "fotos\abrir terminar e colocar split.png">
+<img src = "fotos\colocar na pasta src.png">
+<img src = "fotos\digitar java cliente e servidor.png">
+<img src = "fotos\pronto para uso.png">
 # Sockets
 
 ### Cliente
