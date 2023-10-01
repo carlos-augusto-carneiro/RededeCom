@@ -4,10 +4,45 @@
 recomendo usar a versão java version "20.0.2"
 
 ### Como executar
+
+Abra primeiro os dois codigos.
+
 <img src = "fotos\abrir os codigos (1).png">
+
+Abra um terminal no VS Code. Caso você não esteja usando o VS Code, abra dois terminais separados. No VS Code, você pode abrir dois terminais clicando com o botão direito na área de terminal atual e selecionando "Split Terminal" (Dividir Terminal) ou usando o atalho de teclado apropriado.
+
 <img src = "fotos\abrir terminar e colocar split.png">
+
+Após abrir o terminal, navegue até a pasta "src" onde estão localizados os arquivos do servidor e do cliente para que possam ser executados. No GitHub, já subi os executáveis, no entanto, caso ocorra algum erro, peço que compile novamente. No próprio terminal, digite os seguintes comandos para compilar os arquivos:
+
+Para compilar o arquivo Cliente.java, utilize o comando:
+
+* **javac Cliente.java**
+
+Para compilar o arquivo Server.java, utilize o comando:
+
+* **javac Server.java**
+
 <img src = "fotos\colocar na pasta src.png">
+
+Após a compilação bem-sucedida, você pode executar os programas Cliente e Servidor. Certifique-se de estar na pasta correta onde os arquivos compilados estão localizados antes de executar os comandos a seguir. Execute nessa ordem.
+
+Para executar o Servidor, utilize o comando:
+
+* **java Server**
+
+Para executar o Cliente, utilize o comando:
+
+* **java Cliente**
 <img src = "fotos\digitar java cliente e servidor.png">
+
+O código já está pronto para uso e as funções do servidor são as seguintes:
+
+* **Tchau**: Essa função permite encerrar a conexão entre o cliente e o servidor.
+* **hora**: A função "hora" retorna o horário exato do servidor para o cliente.
+* **porta**: A função "porta" retorna a porta em que o servidor está ouvindo para comunicação.
+* **Listar arquivos**: A função "Listar arquivos" lista todos os arquivos do diretório especificado no servidor. Você pode alterar o diretório para listar arquivos no código do arquivo **Server.java**, na linha 54, onde está definida a variável **diretorio**. Você pode modificar o caminho dentro dos parênteses para listar arquivos em outro diretório.
+
 <img src = "fotos\pronto para uso.png">
 # Sockets
 
