@@ -11,9 +11,8 @@ public class Cliente {
         BufferedWriter bufferedWriter = null;
 
         try {
-
             socket = new Socket("localhost", 9998);
-			System.out.println("Cliente conectado ao servidor.");
+            System.out.println("Cliente conectado ao servidor.");
 
             inputStreamReader = new InputStreamReader(socket.getInputStream());
             outputStreamWriter = new OutputStreamWriter(socket.getOutputStream());
@@ -28,54 +27,51 @@ public class Cliente {
                     bufferedWriter.newLine();
                     bufferedWriter.flush();
 
-                    System.out.println("Server: " + bufferedReader.readLine());
-
                     if (msg.equalsIgnoreCase("Tchau")) {
-                		System.out.println("Até a próxima <3");
+                        System.out.println("Até a próxima <3");
                         socket.close();
                         break;
-                	}else if (msg.equalsIgnoreCase("Hora")) {
+                    } else if (msg.equalsIgnoreCase("Hora")) {
                         System.out.println("Cliente: Solicitando hora atual...");
                         String horaAtual = bufferedReader.readLine();
                         System.out.println("Server: " + horaAtual);
-                    }else if (msg.equalsIgnoreCase("Porta")) {
+                    } else if (msg.equalsIgnoreCase("Porta")) {
                         System.out.println("Cliente: Solicitando a porta do servidor...");
                         String portaServidor = bufferedReader.readLine();
                         System.out.println("Server: " + portaServidor);
-                    }else if (msg.equalsIgnoreCase("Listar arquivos")) {
-                        bufferedWriter.write("ListarArquivos");
-                        bufferedWriter.newLine();
-                        bufferedWriter.flush();
-                    
+                    } else if (msg.equalsIgnoreCase("Listar arquivos")) {
+                        System.out.println("Cliente: Solicitando lista de arquivos...");
                         String resposta;
-                        while (!(resposta = bufferedReader.readLine()).equals("FimDaLista")) {
+                        while (!(resposta = bufferedReader.readLine()).equals("Fim da lista")) {
                             System.out.println("Arquivo: " + resposta);
                         }
+                    } else {
+                        // Recebe a resposta genérica do servidor
+                        String respostaGenerica = bufferedReader.readLine();
+                        System.out.println("Server: " + respostaGenerica);
                     }
-                    
                 }
             }
-		}
-		finally {
-			try{
-				if(socket != null){
-					socket.close();
-				}
-				if(inputStreamReader != null){
-					inputStreamReader.close();
-				}
-				if(outputStreamWriter != null){
-					outputStreamWriter.close();
-				}
-				if(bufferedReader != null){
-					bufferedReader.close();
-				}
-				if(bufferedWriter != null){
-					bufferedWriter.close();
-				}
-        	} catch (IOException e){
-				e.printStackTrace();
-			}
-    	}
-	}
+        } finally {
+            try {
+                if (socket != null) {
+                    socket.close();
+                }
+                if (inputStreamReader != null) {
+                    inputStreamReader.close();
+                }
+                if (outputStreamWriter != null) {
+                    outputStreamWriter.close();
+                }
+                if (bufferedReader != null) {
+                    bufferedReader.close();
+                }
+                if (bufferedWriter != null) {
+                    bufferedWriter.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
